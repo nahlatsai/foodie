@@ -1,0 +1,699 @@
+$global-max-width: 100%;
+$primary-color: #C79F62;
+
+
+$header1-size: 48px;
+$header2-size: 30px;
+$header3-size: 24px;
+$header4-size: 18px;
+$header5-size: 14px;
+
+$pc-l-media: 1200px;
+$pcs-l-media: 1199px;
+$pc-media: 992px;
+$pcs-media: 991px;
+$pad-media: 768px;
+$pads-media: 767px;
+$phone-media: 576px;
+$phones-media: 575px;
+
+
+@mixin pcl-width() {
+  // xl
+  @media all and (min-width: $pc-l-media) {
+    @content;
+  }
+}
+@mixin pc-width() {
+  // lg
+  @media all and (min-width: $pc-media) {
+    @content;
+  }
+}
+@mixin padl-width() {
+  // md
+  @media all and (min-width: $pad-media)  {
+    @content; //大於768就會吃CSS
+  }
+}
+@mixin pad-width() {
+  // sm
+  @media all and (min-width: $phone-media) {
+    @content;
+  }
+}
+@mixin phone-width() {
+  // xs
+  @media all and (max-width: $phone-media) {
+    @content;
+  }
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  box-sizing: border-box;
+  font-family: 'Raleway', '微軟正黑體', sans-serif;
+}
+
+
+
+.wow { visibility: hidden; }
+
+html, body {
+  height: 100%;
+}
+
+a {
+  display: block;
+  text-decoration: none;
+  color: black;
+}
+
+.header {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 90px;
+  z-index: 999;
+  
+  background: white;
+  opacity: 0.9;
+  
+  &.mobile {
+    display: block;
+    background: white;
+    overflow: hidden;
+    
+    @include pc-width {
+      display: none;
+    }
+    
+    &.open {
+      height: 440px;
+    }
+    
+    .menu-icon {
+      width: 32px;
+      height: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 2px 0;
+      cursor: pointer;
+
+      .menu-line {
+        width: 100%;
+        height: 2px;
+        display: block;
+        background: black;
+        border-radius: 25%;
+        transition: all 0.2s; //讓漢堡有位移、旋轉過度效果的動畫
+      }
+      &.close-icon {
+        span:nth-child(1) {
+          transform: translateY(12px) rotate(45deg);
+        }
+        span:nth-child(2) {
+          opacity:0;
+        }
+        span:nth-child(3) {
+          transform: translateY(-12px) rotate(-45deg);
+        }
+      }
+    }
+    .main-menu {
+      margin-top: 16px;
+      
+      .main-navigation {
+       max-width: $global-max-width;
+       margin: auto;
+       background: #ddd;
+      }
+      .main-navigation ul {
+       list-style: none;
+       margin: 0;
+        
+        li {
+          padding: 12px 8px;
+          border-bottom: 1px solid white;
+          transition: all 0.3s;
+          
+          a{
+            margin-left: 16px;
+            color: black;
+            font-size: 18px;
+            font-weight: bold;
+            display: block;//將a變成區塊，才能做出hover後向右移的效果
+            text-decoration: none;//設定後，滑鼠指到才不會有底線出現
+            transition: all 0.3s;
+            
+            &:hover {
+              color: $primary-color;
+              transform: translateX(8px);//滑鼠滑到向右移
+            }
+          }
+        }
+      }
+    }
+  }
+    .col-2 {
+      padding: 0;
+    }
+    
+    &.web {
+    display: none;
+    overflow: hidden;
+    @include pc-width {
+      display: block;
+    }
+    
+    .main-navigation ul {
+        display: flex;
+        height: 100%;
+        text-decoration:none;
+        justify-content: space-between;
+        list-style: none;
+        margin: 0;
+      }
+
+    .main-navigation ul li a {
+      text-decoration: none;
+      color: bla;
+      font-weight: 800;
+      font-size: 18px;
+    }
+
+    .main-tool {
+      display: flex;
+      height: 90px;//為何寫趴數100撐不起來?
+      margin-left: auto;
+      justify-content: space-around;
+      background-image: url('https://imgur.com/wIJcKL0.png');
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+  
+      align-items: center;
+      padding: 0;
+
+      .nav-tool {
+        cursor: pointer;
+      }
+
+      .fas {
+        color: black;
+      }
+    }
+  }
+}
+
+.container {
+  padding-left: 80px;
+  padding-right: 80px;
+  max-width: $global-max-width;
+}
+
+.logo {
+  padding: 10px;
+}
+
+.hero-section {
+  display:block;
+  padding-top: 92px;
+}
+
+
+
+/* BOOTSTRAP Carousel */
+.carousel-indicators li {
+  border: 1px solid white;
+  width: 8px;
+  height: 8px;
+  margin: 0 6px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.carousel-indicators .active {
+  background: white;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  display: none;  
+}
+
+//好饗吃職人廚坊
+
+h1.title {
+  margin: 50px 0;
+  font-size: $header2-size; 
+  font-weight: 800;
+  text-align: center;
+  width: 100%;
+  color: black;
+}
+
+.info {
+  position: relative;
+  left: 80px;
+      .store {
+        font-size: 40px;
+        font-weight: 800;
+        white-space: nowrap;
+        margin-bottom: 16px;
+        color: #444;
+        // text-shadow: 0 48px 10px rgba(0,0,0,0.1);
+
+        /* 定為元素及層級設定 */
+        position: relative;
+        z-index: 10;
+      }
+      
+      .name {
+        margin-bottom: 16px;
+        font-size: 48px;
+        color: rgb(127, 111, 177);
+      }
+      
+      .description {
+        color: #666;
+        line-height: 24px;
+        margin-bottom: 16px;
+      }
+    }
+    .image {
+      position: relative;
+      left: 80px;
+      width: 100%;
+      
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        overflow: hidden;
+      }
+    }
+
+
+
+
+
+//熱銷主打
+// .gallery {
+//   background: #EEE;
+// }
+
+.gallery-cell {
+  width: 30%;
+  height: 450px;
+  margin-right: 10px;
+  counter-increment: gallery-cell;
+  background-image: url('https://imgur.com/wIJcKL0.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  border-radius: 10px;
+  text-align: center;
+  
+  img {
+    width: 100%;
+    height: 50%;
+    object-fit: cover;
+  }
+  
+  .item {
+    width: 100%;
+    height: 80px;
+  }
+  
+  h3.intro {
+    text-align: center;
+    font-weight: 800;
+    padding: 10px 10px;
+    margin: 0;
+    color: black;
+  }
+  
+  p.description {
+    text-align: left;
+    padding: 0 10px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+  
+  button.addtocart {
+    height: 30px;
+    width: 100px;
+    background: rgb(225, 224, 224);
+    border: 0;
+    border-radius: 5px;
+    margin-top: 15px;
+    
+    a.btn {
+      text-decoration: none;
+      color: black;
+      font-weight: 800;
+      line-height: 30px;
+      padding: 0;
+    }
+    
+  }
+}
+
+.flickity-prev-next-button.next {
+  top: 150px;  
+  right: 10px;
+}
+
+.flickity-prev-next-button.previous {
+  top: 150px;
+  left: 10px;
+}
+
+
+.modal-container {
+  max-width: 800px;
+  padding: 0;
+  margin: 20px 0;
+  border-radius: .3em;
+  box-shadow: 0 0.1em 0.4em rgba(0,0,0,.3);
+  
+  .modal-title {
+    font-weight: 700;
+    font-size: 28px;
+    text-align: center;
+  }
+  
+  .modal-body {
+    width: 100%;
+    
+    .title {
+      font-weight: 600;
+      }
+    .image-product {
+      width: 100%;
+      height: 300px;
+      margin-right: 10px;
+      
+      img {
+        max-width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  
+  .modal-footer {
+    padding: 12px;
+    text-align: right;
+    
+    .btn-primary {
+      width: 100px;
+      background-color: #333;
+      border-radius: 25px;
+      border: none;
+      line-height: 36px;
+    }
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+  
+  .fancybox-close-small,.fancybox-close-small:after {
+    outline:none;
+  }
+}
+
+//饕客分享  
+   .share-container {  
+    display: flex;//為了讓圖與對話框可以並列
+    align-items: center;
+    
+    .share-person {
+      margin: 15px 15px;
+      //設定寬高，讓圖片呈現在合適的大小
+      width: 200px;
+      height: 200x;
+      
+      img {
+        //父層有設定寬高，圖片還要再依下方方式設定
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .share-content {
+      display:inline-block; //有設定此屬性，block大小會依據內容和目前寬來變換高度
+      vertical-align: middle; //讓文字垂直於對話框中間
+      background: #fff;
+      margin: 10px 20px; //讓對話框間有空隙
+      padding: 15px 20px;
+      font-size: 14px;
+      line-height: 2; //隨意抓的
+      letter-spacing: 2.5px; //字元間距
+      border-radius: 15px;
+      box-shadow: 6px 6px 14px rgba(0,0,0,0.15);
+    }
+  }
+
+
+//小編開菜囉  
+.menu-list {
+  margin: 0 auto;
+  width: 100%;
+  margin-bottom: 150px;
+  // border: 1px solid lightblue;
+  .menu {
+    .menu-box {
+      
+      &:nth-of-type(3n+1){
+        margin-top: 10px;
+      }
+      &:nth-of-type(3n+2){
+        margin-top: 160px;
+      }
+      &:nth-of-type(3n+3){
+        margin-top: 80px;
+      }
+      
+      &:nth-of-type(even) .menu-container {
+        width: 250px;
+        margin-right: 20px;
+        margin-left: 30px;
+        
+        .recipeNum {
+          position: absolute;
+          width: 40px;
+          z-index: 1;
+          top: 0;
+          right: 0;
+          img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+          }
+        }
+        .recipeTxt {
+          position: absolute;
+          z-index: 2;
+          width: 72px;
+          top: -10px;
+          left: -5px;
+          img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+          }
+        }
+        
+        .recipeItem {
+          position:absolute;
+          // border: 2px solid #EEE;
+          height: 100%;
+          transform:scale(1,1);
+          // border-radius: 10px;
+          overflow: hidden;
+          cursor: pointer;
+
+          img {
+            max-width: 100%;
+            height: 100%;
+            object-fit:contain;
+            transition: all 1s;
+            &:hover {
+              transform:scale(1.2,1.2);
+            }
+          }
+         }
+        
+        .menu-pattern {
+          left: -60px;
+          top: -60px;
+          z-index: -1;
+          img {
+            max-width: 100%;
+            height: auto;
+            }
+          }
+        }
+      
+      &:nth-of-type(odd) .menu-container {
+        width: 250px;
+        margin-right: 30px;
+        margin-left: 20px;  
+        
+        .recipeNum {
+          position: absolute;
+          width: 40px;
+          z-index: 1;
+          top: 0;
+          left: 0;
+          img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+          }
+        }
+        .recipeTxt {
+          position: absolute;
+          z-index: 2;
+          width: 72px;
+          top: -10px;
+          right: 5px;
+          img {
+            max-width: 100%;
+            height: auto;
+            object-fit: contain;
+          }
+        }
+        
+        .recipeItem {
+          position:absolute;
+          // border: 2px solid #EEE;
+          height: 100%;
+          transform:scale(1,1);
+          // border-radius: 10px;
+          overflow: hidden;
+          cursor: pointer;
+
+          img {
+            max-width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 1s;
+            &:hover {
+              transform:scale(1.2,1.2);
+            }
+          }
+        }
+        .menu-pattern {
+          right: -60px;
+          top: -60px;
+          z-index: -1;
+          img {
+            max-width: 100%;
+            height: auto;
+           }
+         }
+      }
+    }
+  } 
+}
+ 
+
+.footer {
+  margin-top: 50px;
+  padding: 50px;
+  background-image: url('https://imgur.com/wIJcKL0.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  .basic-info {
+     text-align: center;
+     font-size: $header5-size;
+     color: black;
+     font-weight: 600;
+   }
+
+  .social-info {
+    padding-top: 50px;
+
+    .fb {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      color: black;
+    }
+
+    .ig {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 50px;
+      color: #black;
+    }
+
+    .blog {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      display: flex;
+
+
+      img {
+        width: auto;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+
+.scrollup-btn {
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  text-decoration: none;
+  
+  width: 48px;
+  height: 48px;
+  border: 2px solid white;
+  border-radius: 6px;
+  background-image: url('https://imgur.com/wIJcKL0.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  
+  position: fixed;
+  right: 15px;
+  bottom: 15px;
+  cursor: pointer;
+  
+  opacity: 0;
+  transition: all 0.3s;
+  
+  i {
+    display: block;
+    color: black;
+    font-size: 24px;
+  }
+  
+  &.show {
+    opacity: 1;
+  }
+}
+
