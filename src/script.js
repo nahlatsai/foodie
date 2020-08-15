@@ -34,6 +34,15 @@ menuBtn.onclick = function() {
 }
 
 
+$(document).on('click', 'a.nav-link', function (event) {
+          event.preventDefault();
+          console.log("CLICKED ANCHOR!");
+
+          $('html, body').animate({
+              scrollTop: $($.attr(this, 'href')).offset().top - $(".header.web").height() - 30
+          }, 500);
+      });
+
 // let menuBtn = document.getElementById("menu-icon");
 
 // menuBtn.onclick = function() {
